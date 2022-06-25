@@ -7,7 +7,7 @@ import { LoginWallet, LogoutWallet } from "../WalletWeb3";
 import { PublicContext } from "../../../../Context/Public";
 
 export default function WalletBtn() {
-  const { publicCtx, setPublicCtx } = React.useContext(PublicContext);
+  const { publicCtx } = React.useContext(PublicContext);
   // const ssx = new SSX({ web3ModalOptions: { infuraId: 'a75b179c937e4d7a936cb4502f5b0a59'} });
   // setPublicCtx({ ...publicCtx, ssx });
   // ssx.signIn().then((data) => {console.log(data)}).catch((e) => {console.log(e)});

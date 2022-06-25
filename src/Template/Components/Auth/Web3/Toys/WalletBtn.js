@@ -19,8 +19,9 @@ export default function WalletBtn() {
         setPublicCtx({ ...publicCtx, ssx });
     }
     console.log(ssx)
-    await ssx.signIn();
-    await ssx.loadOrbit();
+    // await ssx.signIn();
+    await ssx.connect();
+    await ssx.connectToOrbit();
     // let _loginLogout = publicCtx.wallet.connected
     //   ? await LogoutWallet()
     //   : await LoginWallet(publicCtx.device);

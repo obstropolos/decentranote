@@ -1,4 +1,5 @@
 import React from "react";
+import { SSX } from "@skgbafa/ssx-hackathon";
 
 import { DefaultPublic } from "./Default";
 import SetColor from "../Layout/Theme/SetColor";
@@ -9,7 +10,10 @@ export const PublicContext = React.createContext({
 });
 
 export const PublicProvider = ({ children }) => {
-  let Default = FillDefaulePublic();
+  let Default = FillDefaultPublic();
+  // we should make an ssx provider instead
+  Default.ssx = new SSX({ web3ModalOptions: { infuraId: 'a75b179c937e4d7a936cb4502f5b0a59'}, persistSessionData: false });
+
   const [publicCtx, setPublicCtx] = React.useState(Default);
   const value = React.useMemo(() => ({ publicCtx, setPublicCtx }), [publicCtx]);
 
@@ -18,7 +22,7 @@ export const PublicProvider = ({ children }) => {
   );
 };
 
-const FillDefaulePublic = () => {
+const FillDefaultPublic = () => {
   let Default = { ...DefaultPublic };
 
   Default.device =

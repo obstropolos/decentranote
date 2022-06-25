@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_PKG_MANIFEST",
+    "err": {
+      "name": "pnpm",
+      "message": "No package.json found in /Users/samgbafa",
+      "code": "ERR_PNPM_NO_PKG_MANIFEST",
+      "stack": "pnpm: No package.json found in /Users/samgbafa\n    at handler (/Users/samgbafa/.nvm/versions/node/v14.19.0/lib/node_modules/pnpm/dist/pnpm.cjs:123174:17)\n    at async /Users/samgbafa/.nvm/versions/node/v14.19.0/lib/node_modules/pnpm/dist/pnpm.cjs:187855:21\n    at async run (/Users/samgbafa/.nvm/versions/node/v14.19.0/lib/node_modules/pnpm/dist/pnpm.cjs:187829:34)\n    at async runPnpm (/Users/samgbafa/.nvm/versions/node/v14.19.0/lib/node_modules/pnpm/dist/pnpm.cjs:188047:5)\n    at async /Users/samgbafa/.nvm/versions/node/v14.19.0/lib/node_modules/pnpm/dist/pnpm.cjs:188039:7"
+    }
+  }
+}

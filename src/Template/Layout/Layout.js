@@ -11,7 +11,7 @@ export default function Layout() {
     <>
       <Header />
       <ScrollTopButton>
-        <main style={{ textAlign: "center", minHeight: "103vh" }}>
+        <main style={{ minHeight: "103vh" }}>
           <Main />
           <AlertBar />
         </main>

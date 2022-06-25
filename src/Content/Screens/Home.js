@@ -1,5 +1,5 @@
 import React from "react";
-// import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
 
@@ -20,9 +20,9 @@ A table:
 export default function Home() {
   document.title = process.env.REACT_APP_COMPANY_NAME;
 
+
   return (
     <>
-      <div>Home</div>
       <Editor
         initialValue={markdown}
         previewStyle="vertical"

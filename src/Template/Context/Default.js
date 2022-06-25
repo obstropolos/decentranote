@@ -30,4 +30,5 @@ export const DefaultPublic = {
     message: "",
     severity: "info",
   },
+  ssx: {}
 };

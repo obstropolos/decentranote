@@ -46,6 +46,7 @@ const FillDefaulePublic = () => {
   };
 
   Default.auth = JSON.parse(localStorage.getItem("auth")) || DefaultPublic.auth;
+  Default.ssx = DefaultPublic.ssx;
 
   return Default;
 };

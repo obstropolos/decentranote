@@ -1,22 +1,31 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { AccountBalanceWallet as AccountBalanceWalletIcon } from "@mui/icons-material";
+import { SSX } from "@skgbafa/ssx-hackathon";
 
 import { LoginWallet, LogoutWallet } from "../WalletWeb3";
 import { PublicContext } from "../../../../Context/Public";
 
 export default function WalletBtn() {
   const { publicCtx, setPublicCtx } = React.useContext(PublicContext);
-
+  // const ssx = new SSX({ web3ModalOptions: { infuraId: 'a75b179c937e4d7a936cb4502f5b0a59'} });
+  // setPublicCtx({ ...publicCtx, ssx });
+    // await ssx.signIn();
+  
   const walletClick = async () => {
-    let _loginLogout = publicCtx.wallet.connected
-      ? await LogoutWallet()
-      : await LoginWallet(publicCtx.device);
+    if (!publicCtx.ssx) {
+        const ssx = new SSX({ web3ModalOptions: { infuraId: 'a75b179c937e4d7a936cb4502f5b0a59'} });
+        setPublicCtx({ ...publicCtx, ssx });
+    }
+    publicCtx.ssx.signIn();
+    // let _loginLogout = publicCtx.wallet.connected
+    //   ? await LogoutWallet()
+    //   : await LoginWallet(publicCtx.device);
 
     setPublicCtx({
       ...publicCtx,
-      wallet: _loginLogout.wallet,
-      alertBar: _loginLogout.alert,
+      // wallet: _loginLogout.wallet,
+      // alertBar: _loginLogout.alert,
     });
   };
 

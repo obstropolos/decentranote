@@ -1,6 +1,6 @@
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import SSX from "ssx";
+
 import { DefaultPublic } from "../../../Context/Default";
 
 let DefaultWallet = DefaultPublic.wallet;
@@ -122,6 +122,7 @@ export async function LoginWallet(deviceType) {
     },
   };
 }
+
 
 export async function LogoutWallet() {
   return {

@@ -20,7 +20,6 @@ A table:
 export default function Home() {
   document.title = process.env.REACT_APP_COMPANY_NAME;
 
-
   return (
     <>
       <Editor
@@ -29,6 +28,7 @@ export default function Home() {
         height="600px"
         initialEditType="markdown"
         useCommandShortcut={true}
+        usageStatistics={false}
       />
     </>
   );

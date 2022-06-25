@@ -4,7 +4,6 @@ import Drawer from "../Drawer/Drawer";
 import Logo from "../Toys/Logo";
 import Title from "../Toys/Title";
 import Gap from "../Toys/Gap";
-import DarkModeBtn from "../../Theme/DarkModeBtn";
 import LoginBtn from "../../../Components/Auth/Web1/Toys/LoginBtn";
 import WalletBtn from "../../../Components/Auth/Web3/Toys/WalletBtn";
 
@@ -32,7 +31,6 @@ export default function AppBarComponent(props) {
         ) : (
           <></>
         )}
-        <DarkModeBtn />
       </Toolbar>
     </AppBar>
   );

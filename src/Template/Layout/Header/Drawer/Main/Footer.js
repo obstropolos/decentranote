@@ -2,9 +2,6 @@ import React from "react";
 import { ListItemIcon, Stack, Divider } from "@mui/material";
 import {
   Copyright as CopyrightIcon,
-  GitHub as GitHubIcon,
-  Twitter as TwitterIcon,
-  LinkedIn as LinkedInIcon,
 } from "@mui/icons-material";
 
 export default function Footer() {
@@ -33,35 +30,6 @@ export default function Footer() {
             paddingBottom: "15px",
           }}
         >
-          <ListItemIcon sx={{ color: "text.primary" }}>
-            <TwitterIcon
-              sx={{ cursor: "pointer" }}
-              onClick={() =>
-                window.open(
-                  `https://twitter.com/${process.env.REACT_APP_TWITTER_ID}`,
-                  "_blank"
-                )
-              }
-            />
-            <GitHubIcon
-              sx={{ cursor: "pointer", mx: 2 }}
-              onClick={() =>
-                window.open(
-                  `https://github.com/${process.env.REACT_APP_GITHUB_ID}`,
-                  "_blank"
-                )
-              }
-            />
-            <LinkedInIcon
-              sx={{ cursor: "pointer" }}
-              onClick={() =>
-                window.open(
-                  `https://www.linkedin.com/in/${process.env.REACT_APP_LINKEDIN_ID}`,
-                  "_blank"
-                )
-              }
-            />
-          </ListItemIcon>
         </Stack>
         <Stack
           direction="row"

@@ -24,7 +24,7 @@ export default function Drawer() {
       </IconButton>
       <MuiDrawer isDrawerOpen={isDrawerOpen} closeDrawer={closeDrawer}>
         <NestedDrawer />
-        <MainDrawer closeDrawer={closeDrawer} />
+        {/* <MainDrawer closeDrawer={closeDrawer} /> */}
       </MuiDrawer>
     </>
   );

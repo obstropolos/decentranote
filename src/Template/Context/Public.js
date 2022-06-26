@@ -51,6 +51,8 @@ const FillDefaultPublic = () => {
 
   Default.auth = JSON.parse(localStorage.getItem("auth")) || DefaultPublic.auth;
   Default.ssx = DefaultPublic.ssx;
+  Default.documents = DefaultPublic.documents;
+  Default.currentDocument = DefaultPublic.currentDocument;
 
   return Default;
 };

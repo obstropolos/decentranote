@@ -30,5 +30,8 @@ export const DefaultPublic = {
     message: "",
     severity: "info",
   },
+  documents: [],
+  currentDocument: "",
+  documentPrefix: "md/",
   ssx: null
 };

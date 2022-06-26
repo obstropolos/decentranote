@@ -8,17 +8,44 @@ import MuiDrawer from "../Toys/MuiDrawer";
 import User from "../../../../Components/Profile/Toys/User";
 import Setting from "../../../Setting/Setting";
 import { PublicContext } from "../../../../Context/Public";
+import { List, ListItem } from "@mui/material";
+import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 
 
 function ListDocuments() {
-  const { publicCtx: { documents } } = React.useContext(PublicContext);
+  const { publicCtx, setPublicCtx } = React.useContext(PublicContext);
+  const { ssx, documents, documentPrefix } = publicCtx;
+
+  const loadDocument = async (name) => {
+    console.log(name)
+    const { ok, statusText, data } = await ssx.orbitGet(name);
+    const { ok1, data: documents} = await publicCtx.ssx.orbitList();
+    console.log(statusText);
+    console.log(data);
+    console.log(documents)
+    if (ok && ok1) {
+      setPublicCtx({
+        ...publicCtx,
+        currentKey: name,
+        currentDocument: data,
+        documents: documents.filter((documentName) => documentName.startsWith(documentPrefix)),
+      });
+    }
+  };
 
   return (
     <>
       <div style={{ paddingLeft: 15, paddingRight: 15 }}>
-        {documents.map((document, index) => (
-          <p key={index}>{document.name}</p>
-        ))}
+        <List>
+          {documents.map((document, index) => (
+            <ListItem onClick={(e) => { loadDocument(document) }} secondaryAction={
+              <IconButton edge="end" aria-label="delete">
+                <AddToQueueIcon />
+              </IconButton>
+            } key={index}>{document.replace(documentPrefix, "")}</ListItem>
+          ))}
+        </List>
+
         {documents.length === 0 && (
           <p>No documents found</p>
         )}
@@ -28,9 +55,9 @@ function ListDocuments() {
 }
 
 function CreateDocuments() {
-  const { publicCtx , setPublicCtx } = React.useContext(PublicContext);
+  const { publicCtx, setPublicCtx } = React.useContext(PublicContext);
 
-  if(!publicCtx.currentDocument) {
+  if (!publicCtx.currentDocument) {
     return null;
   }
 
@@ -38,6 +65,7 @@ function CreateDocuments() {
     e.preventDefault();
     setPublicCtx({
       ...publicCtx,
+      currentKey: "",
       currentDocument: "",
     })
   }
@@ -46,7 +74,7 @@ function CreateDocuments() {
     <>
       <div style={{ paddingLeft: 15, paddingRight: 15 }}>
         <Button variant="contained" onClick={handleSubmit}>Reset document</Button>
-        <p>This will overwrite your current document!</p>
+        {/* <p>This will overwrite your current document!</p> */}
       </div>
     </>
   );
@@ -57,7 +85,7 @@ function CreateDocuments() {
 //   const { ssx, documents, currentDocument } = publicCtx;
 //   const [name, setName] = React.useState("");
 
-  
+
 
 //   return (
 //     <>
@@ -70,33 +98,38 @@ function CreateDocuments() {
 //   );
 // }
 
-function TriggerSave({toggle}) {
+function TriggerSave({ toggle }) {
   const { publicCtx: { documents } } = React.useContext(PublicContext);
 
   return (
     <>
       <div style={{ paddingLeft: 15, paddingRight: 15 }}>
-        <Button variant="contained" onClick={() => {toggle(true)}}>Save Document</Button>
+        <Button variant="contained" onClick={() => { toggle(true) }}>Save Document</Button>
       </div>
     </>
   );
 }
 
-function SaveDocument({toggle}) {
-  const { publicCtx , setPublicCtx } = React.useContext(PublicContext);
-  const { ssx, documents, currentDocument,documentPrefix  } = publicCtx;
+function SaveDocument({ toggle }) {
+  const { publicCtx, setPublicCtx } = React.useContext(PublicContext);
+  const { ssx, documents, currentDocument, documentPrefix } = publicCtx;
   const [name, setName] = React.useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await ssx.orbitPut(`${documentPrefix}${name}`, currentDocument );
+    const key = `${documentPrefix}${name}`;
+    await ssx.orbitPut(key, currentDocument);
+    setPublicCtx({
+      ...publicCtx,
+      currentKey: key,
+    })
     toggle(false);
   }
 
   return (
     <>
       <div style={{ textAlign: "center", paddingLeft: "10px" }}>
-        
+
         <TextField id="outlined-basic" variant="outlined" label="Document Name" value={name} onChange={(e) => setName(e.target.value)} />
         <Button variant="contained" onClick={handleSubmit}>Save document</Button>
       </div>
@@ -123,8 +156,8 @@ function Save() {
 
   return (
     <>
-      { currentDocument &&  !showSaveDocument && <TriggerSave toggle={setShowSaveDocument}/>}
-      { showSaveDocument && <SaveDocument toggle={setShowSaveDocument}/> }
+      {currentDocument && !showSaveDocument && <TriggerSave toggle={setShowSaveDocument} />}
+      {showSaveDocument && <SaveDocument toggle={setShowSaveDocument} />}
     </>
   );
 

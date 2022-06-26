@@ -23,6 +23,7 @@ export default function WalletBtn() {
     await publicCtx.ssx.connectToOrbit();
     const { ok, data } = await publicCtx.ssx.orbitList();
     if (ok) {
+      console.log(data)
       const documents = data.filter((documentName) => documentName.startsWith(documentPrefix));
       setPublicCtx({
         ...publicCtx,
